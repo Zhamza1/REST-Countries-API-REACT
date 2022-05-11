@@ -8,7 +8,7 @@ import Error from "./components/Error"
 import GlobalStyle from "./utils/style/GlobalStyle"
 import { ThemeProvider } from "./utils/context"
 
-
+d
 ReactDOM.render(
     <React.StrictMode>
         <Router>
