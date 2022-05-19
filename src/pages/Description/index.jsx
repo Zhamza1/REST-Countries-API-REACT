@@ -3,9 +3,13 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { StyledLink } from "../../utils/style/Atoms";
 import styled from "styled-components";
+import { MediaQueries } from "../../utils/style/MediaQueries";
 
-const Body=styled.body`
+const Body=styled.div`
     margin:0px 70px;
+    ${MediaQueries("mobil")`
+    margin:0 10px;
+    `}
 `
 
 const Button=styled.button`
@@ -23,19 +27,18 @@ const Button=styled.button`
 `
 
 const AllContainer=styled.div`
-    height:405px;
     margin-top:80px;
-    margin-bottom:200px;
     display:flex;
+    flex-wrap:wrap;
 `
 const Image=styled.img`
-    height:100%;
-    width:45%;
+  width:550px;
+  height:auto;
 `
 
 
 const TexteContainer=styled.div`
-    margin-left:90px;
+    margin-left:8%;
     padding:20px 0;
 `
 
@@ -81,20 +84,15 @@ const Description = () => {
 
     getCountryByName();
   }, [countryName]);
-
-  console.log(countryName)
-
   return (
-    <Body>
-          <StyledLink to="/" >
-                <Button id="back">◀ Back</Button>
-            </StyledLink> 
-
+    <Body> 
+        <Button id="back"><StyledLink to="/">◀ Back</StyledLink></Button>
       {isLoading && !error && <h4>Loading........</h4>}
       {error && !isLoading && { error }}
 
       {country?.map((country, index) => (
         <AllContainer key={index}>  
+        
             <Image src={country.flags.png} alt="" />
             <TexteContainer>
                 <h1>{country.name}</h1>

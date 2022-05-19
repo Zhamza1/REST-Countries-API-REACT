@@ -1,5 +1,5 @@
 import React from "react"
-import ReactDOM from "react-dom"
+import ReactDOM from "react-dom/client"
 import {BrowserRouter as Router,Route,Routes} from "react-router-dom"
 import Description from "./pages/Description"
 import Home from "./pages/Home"
@@ -9,20 +9,22 @@ import GlobalStyle from "./utils/style/GlobalStyle"
 import { ThemeProvider } from "./utils/context"
 
 
-ReactDOM.render(
+const root=ReactDOM.createRoot(document.getElementById("root"))
+
+root.render(
     <React.StrictMode>
         <Router>
             <ThemeProvider>
                 <GlobalStyle/>
                 <Header/> 
                 <Routes>
+                        <Route path="*" element={<Error/>} />   
                         <Route exact path="/" element={<Home/>}/>
-                        <Route path="/:countryName" element={<Description/>}/>
-                        <Route path="*" element={<Error/>}/>        
+                        <Route exact path="/undefined" element={<Home/>}/>
+                        <Route path="/:countryName" element={<Description/>}/>     
                 </Routes>
             </ThemeProvider>
         </Router>
     
     </React.StrictMode>,
-    document.getElementById("root")
 )

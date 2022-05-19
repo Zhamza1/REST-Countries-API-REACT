@@ -4,10 +4,9 @@ import React from "react"
 import { Loader, StyledLink } from "../../utils/style/Atoms"
 import Card from "../../components/Card"
 import { useNavigate } from "react-router-dom"
-import { Routes,Route } from "react-router-dom"
-import Description from "../Description"
+import { MediaQueries } from "../../utils/style/MediaQueries"
 
-const Body=styled.body`
+const Body=styled.div`
     margin:0px 70px;
 `
 
@@ -15,6 +14,9 @@ const FilterContainer=styled.div`
     display:flex;
     justify-content:space-between;
     margin:50px 0px; 
+    ${MediaQueries("tablet")`
+    flex-wrap:wrap;
+    `}
 `
 const SearchBar=styled.input`
     width:400px;
@@ -24,9 +26,14 @@ const SearchBar=styled.input`
     outline:none;
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
     padding:0 30px;
-    &:active{
-        background: red;
-    }
+    ${MediaQueries("mobile")`
+    width:300px;
+    `}
+    ${MediaQueries("mobil")`
+    width:200px;
+    `}
+    
+
 `
 const Filter=styled.select`
     height:50px;
@@ -36,16 +43,21 @@ const Filter=styled.select`
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
     border-radius:5px;
     padding-left:10px;
-`
-
-const Option=styled.option`
-    color:red;
+    ${MediaQueries("tablet")`
+    margin-top:20px;
+    `}
 `
 const AllCard=styled.div`
     display:flex;
     flex-wrap:wrap;
     justify-content:space-between;  
+    ${MediaQueries("table")`
+    justify-content:center;
+    `}
 `
+
+
+
 
 function Home() {
 
@@ -145,12 +157,12 @@ function Home() {
                         </form>
                     <div>
                     <Filter ref={regionRef} onChange={selectRegion}>
-                        <Option value="ALL">Filter by region</Option>
-                        <Option value="africa">Africa</Option>
-                        <Option value="americas">America</Option>
-                        <Option value="asia">Asia</Option>
-                        <Option value="europe">Europe</Option>
-                        <Option value="oceania">Oceania</Option>
+                        <option value="ALL">Filter by region</option>
+                        <option value="africa">Africa</option>
+                        <option value="americas">America</option>
+                        <option value="asia">Asia</option>
+                        <option value="europe">Europe</option>
+                        <option value="oceania">Oceania</option>
                     </Filter>
                     </div>
                 </FilterContainer>
